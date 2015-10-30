@@ -1,5 +1,7 @@
 package com.lxg.root.imageviewtest;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -42,10 +44,35 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id)
+        {
+            case R.id.action_settings:
+                break;
+            case R.id.about:
+                showAbout();
+                break;
         }
+        return true;
+    }
 
-        return super.onOptionsItemSelected(item);
+    public void showAbout()
+    {
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setIcon(R.drawable.about);
+        builder.setTitle("About");
+        builder.setMessage("NOTHING IS GOING TO SHOW YOU!!\n LOL");
+        builder.setPositiveButton("ENTER", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setNegativeButton("EXIT", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();
     }
 }
